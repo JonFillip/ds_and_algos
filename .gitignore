@@ -348,3 +348,9 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# VScode files
+/Users/johnphillip/Desktop/algorithm_analysis/.vscode
+
+# news_api.py
+news_api.py
