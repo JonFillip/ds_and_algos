@@ -24,7 +24,9 @@ def divide_by_2(dec_number):
     return binary_str
 
 
-print(divide_by_2(22))
+print(divide_by_2(17))
+print(divide_by_2(45))
+print(divide_by_2(96))
 
 
 def base_converter(dec_number, base):
@@ -44,6 +46,3 @@ def base_converter(dec_number, base):
         new_string += chars[remainder_stack.pop()]
 
     return new_string
-
-
-print(base_converter(233, 2))

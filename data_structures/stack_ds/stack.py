@@ -15,11 +15,11 @@ class Stack:
 
     def pop(self):
         """Pops or removes the item at index 0 in a stack"""
-        return self.items.pop(0)
+        return self.items.pop()
 
     def peek(self):
         """Returns the top item from the stack without modifying it"""
-        return self.items[0]
+        return self.items[self.size() - 1]
 
     def size(self):
         """Returns the number of items in the stack"""
