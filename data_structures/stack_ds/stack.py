@@ -15,7 +15,7 @@ class Stack:
 
     def pop(self):
         """Pops or removes the item at index 0 in a stack"""
-        return self.items.pop()
+        return self.items.pop(0)
 
     def peek(self):
         """Returns the top item from the stack without modifying it"""
