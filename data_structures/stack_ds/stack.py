@@ -6,11 +6,11 @@ class Stack:
         self.items = []
 
     def isEmpty(self):
-        """This method checks if a stack is empty and returns a boolean value"""
+        """This method checks if a stack is empty and returns a boolean values"""
         return self.items == []
 
     def push(self, item):
-        """Adds a new value to the top of the stack at index 0"""
+        """Adds a new values to the top of the stack at index 0"""
         self.items.append(item)
 
     def pop(self):

@@ -7,7 +7,7 @@ class UnorderedList:
         self.head = None
 
     def isEmpty(self):
-        """Returns a boolean value if the head of the  list is a reference to
+        """Returns a boolean values if the head of the  list is a reference to
         None"""
         return self.head is None
 
@@ -28,7 +28,7 @@ class UnorderedList:
         return count
 
     def search(self, item):  # Uses Linked List Traversal technique
-        """Searches a list for an item and returns a boolean value indicating
+        """Searches a list for an item and returns a boolean values indicating
         whether or not the item is present in the list."""
         current = self.head
         found = False

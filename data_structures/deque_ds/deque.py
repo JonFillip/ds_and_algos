@@ -4,15 +4,15 @@ class Deque:
         self.items = []
 
     def isEmpty(self):
-        """Checks to see if the deque is empty and returns a boolean value."""
+        """Checks to see if the deque is empty and returns a boolean values."""
         return self.items == []
 
     def addRear(self, item):
-        """Adds a value to the rear of the deque."""
+        """Adds a values to the rear of the deque."""
         self.items.insert(0, item)
 
     def addFront(self, item):
-        """Adds a value to the start/front of the deque"""
+        """Adds a values to the start/front of the deque"""
         self.items.append(item)
 
     def removeFront(self):

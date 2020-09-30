@@ -95,7 +95,7 @@ for i in range(100000, 1000001, 100000):
 
 """
 An experiment to check the performance efficiency using the 'in' operator to
-inspect if a value in a list and a dictionary.
+inspect if a values in a list and a dictionary.
 """
 for numb in range(10000, 100001, 200000):
     in_dict = timeit.Timer("random.randrange(%d) in x" % numb,

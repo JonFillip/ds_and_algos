@@ -5,7 +5,7 @@ class Node:
         self.next = None
 
     def getData(self):
-        """Returns the initial data in the node."""
+        """Returns the initial values in the node."""
         return self.data
 
     def getNext(self):
@@ -13,9 +13,9 @@ class Node:
         return self.next
 
     def setData(self, new_data):
-        """Sets an item in a node's data field."""
+        """Sets an item in a node's values field."""
         self.data = new_data
 
     def setNext(self, next_data):
-        """Sets the value of the next node."""
+        """Sets the values of the next node."""
         self.next = next_data

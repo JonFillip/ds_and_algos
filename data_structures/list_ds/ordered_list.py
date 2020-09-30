@@ -8,7 +8,7 @@ class OrderedList:
         self.head = None
 
     def isEmpty(self):
-        """Checks if the list is empty and returns a boolean value."""
+        """Checks if the list is empty and returns a boolean values."""
         current = self.head
         return current is None
 
@@ -44,7 +44,7 @@ class OrderedList:
             previous.setNext(entr)
 
     def search(self, item):
-        """Searches for th e specified item and returns a boolean value if
+        """Searches for th e specified item and returns a boolean values if
         the item is in the list."""
         current = self.head
         found = False
