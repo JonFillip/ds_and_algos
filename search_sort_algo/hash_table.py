@@ -9,6 +9,7 @@ class HashTable:
         # values for values
 
     def insert(self, key, data):
+        """Inserts a key value pair"""
         hash_code = self.hash_function(key, len(self.slots))
 
         if self.slots[hash_code] is None:
@@ -30,6 +31,7 @@ class HashTable:
                 self.values[next_slot] = data
 
     def hash_function(self, key, size):
+        """Creates and returns the hash code for a value int or str"""
         if type(key) is int:
             return key % size
         elif type(key) is str:
@@ -39,9 +41,12 @@ class HashTable:
             return ordinal_sum % size
 
     def rehash(self, oldhash, size):
+        """Rehashes an item if the appropriate slot has been taken. Collision
+        resolution"""
         return (oldhash + 1) % size
 
     def get(self, key):
+        """Returns the value associated with a key."""
         start_slot = self.hash_function(key, len(self.slots))
 
         data = None
@@ -65,11 +70,20 @@ class HashTable:
     def __setitem__(self, key, data):
         self.insert(key, data)
 
+    def __delitem__(self, key):
+        h = self.hash_function(key, len(self.slots))
+        self.slots[h] = None
+        self.values[h] = None
+
 
 dic = HashTable()
 dic[54] = "cat"
 dic[25] = "dog"
 dic[11] = "parrot"
 dic["cart"] = "carrot"
+print(dic.slots)
+print(dic.values)
+print(dic.get("cart"))
+dic.__delitem__("cart")
 print(dic.slots)
 print(dic.values)
