@@ -6,7 +6,8 @@ class Stack:
         self.items = []
 
     def isEmpty(self):
-        """This method checks if a stack is empty and returns a boolean values"""
+        """This method checks if a stack is empty and returns a boolean
+        values """
         return self.items == []
 
     def push(self, item):
