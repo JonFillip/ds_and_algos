@@ -1,10 +1,12 @@
 from data_structures.binary_trees.tree_node import TreeNode
 
 
-class BinarySearchTree:
-    def __init__(self):
+class BinarySearchTree(TreeNode):
+    def __init__(self, key, value):
         self.root = None
         self.size = 0
+        super().__init__(key, value, left=None, right=None, parent=None,
+                         balance=0)
 
     def length(self):
         return self.size
@@ -166,7 +168,7 @@ class AvlTree(BinarySearchTree):
             new_root.left_child.parent = rotate_root
         new_root.parent = rotate_root.parent
         if rotate_root.is_parent():
-            self.root = new_root
+            self.parent = new_root
         else:
             if rotate_root.is_left_child():
                 rotate_root.parent.left_child = new_root
@@ -187,7 +189,7 @@ class AvlTree(BinarySearchTree):
             new_root.right_child.parent = rotate_root
         new_root.parent = rotate_root.parent
         if rotate_root.is_parent():
-            self.root = new_root
+            self.parent = new_root
         else:
             if rotate_root.is_right_child():
                 rotate_root.parent.right_child = new_root
