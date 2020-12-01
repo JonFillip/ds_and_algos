@@ -1,5 +1,5 @@
 from data_structures.stack_ds.stack import Stack
-from search_sort_algo.binary_tree import BinaryTree
+from data_structures.binary_trees.binary_tree import BinaryTree
 import operator
 
 # 1. If the current token is a '(', it is added as the left child of the current
