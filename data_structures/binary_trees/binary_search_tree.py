@@ -129,6 +129,10 @@ class BinarySearchTree(TreeNode):
 
 class AvlTree(BinarySearchTree):
     """Class for a balance tree."""
+    # balance factor = height(left_subtree) - height(right_subtree)
+    # if balance factor > 0, then the subtree is left heavy
+    # if balance factor < 0, then the subtree is right heavy
+    # balance factor has been set in the TreeNode class as 0
 
     def _insert(self, key, value, current_node):
         if key < current_node.key:
@@ -160,57 +164,63 @@ class AvlTree(BinarySearchTree):
             if node.parent.balance_factor != 0:
                 self.update_balance(node.parent)
 
-    def rotate_left(self, rotate_root):
+    def rotate_left(self, old_root):
         """Left rotation implementation"""
-        new_root = rotate_root.right_child
-        rotate_root.right_child = new_root.left_child
+        new_root = old_root.right_child
+        old_root.right_child = new_root.left_child
         if new_root.left_child is not None:
-            new_root.left_child.parent = rotate_root
-        new_root.parent = rotate_root.parent
-        if rotate_root.is_parent():
+            new_root.left_child.parent = old_root
+        new_root.parent = old_root.parent
+        if old_root.is_parent():
             self.parent = new_root
         else:
-            if rotate_root.is_left_child():
-                rotate_root.parent.left_child = new_root
+            if old_root.is_left_child():
+                old_root.parent.left_child = new_root
             else:
-                rotate_root.parent.right_child = new_root
-        new_root.left_child = rotate_root
-        rotate_root.parent = new_root
-        rotate_root.balance_factor = rotate_root.balance_factor + 1 - min(
+                old_root.parent.right_child = new_root
+        new_root.left_child = old_root
+        old_root.parent = new_root
+        old_root.balance_factor = old_root.balance_factor + 1 - min(
             new_root.balance_factor, 0)
-        rotate_root.balance_factor = new_root.balance_factor + 1 + max(
-            rotate_root.balance_factor, 0)
+        new_root.balance_factor = new_root.balance_factor + 1 + max(
+            old_root.balance_factor, 0)
 
-    def rotate_right(self, rotate_root):
+    def rotate_right(self, old_root):
         """Right rotation implementation"""
-        new_root = rotate_root.left_child
-        rotate_root.left_child = new_root.right_child
+        new_root = old_root.left_child
+        old_root.left_child = new_root.right_child
         if new_root.right_child is not None:
-            new_root.right_child.parent = rotate_root
-        new_root.parent = rotate_root.parent
-        if rotate_root.is_parent():
+            new_root.right_child.parent = old_root
+        new_root.parent = old_root.parent
+        if old_root.is_parent():
             self.parent = new_root
         else:
-            if rotate_root.is_right_child():
-                rotate_root.parent.right_child = new_root
+            if old_root.is_right_child():
+                old_root.parent.right_child = new_root
             else:
-                rotate_root.parent.left_child = new_root
-        new_root.right_child = rotate_root
-        rotate_root.parent = new_root
-        rotate_root.balance_factor = rotate_root.balance_factor + 1 - max(
-            rotate_root.balance_factor, 0)
-        rotate_root.balance_factor = rotate_root.balance_factor + 1 + min(
-            rotate_root.balance_factor, 0)
+                old_root.parent.left_child = new_root
+        new_root.right_child = old_root
+        old_root.parent = new_root
+        old_root.balance_factor = old_root.balance_factor + 1 - max(
+            new_root.balance_factor, 0)
+        new_root.balance_factor = new_root.balance_factor + 1 + min(
+            old_root.balance_factor, 0)
 
     def rebalance(self, node):
-        if node.balance_factor < 0:
-            if node.TreeNode.right_child.balance_factor > 0:
+        if node.balance_factor < 0:  # If the subtree needs a left rotation.
+            if node.TreeNode.right_child.balance_factor > 0:  # 1st check the
+                # balance factor of the right child. If the right child is
+                # left heavy then perform a right rotation on the right child
+                # followed by the original left rotation
                 self.rotate_right(node.TreeNode.right_child)
                 self.rotate_left(node)
             else:
                 self.rotate_left(node)
-        elif node.balance_factor > 0:
-            if node.TreeNode.left_child.balance_factor < 0:
+        elif node.balance_factor > 0:  # If the subtree needs a right rotation
+            if node.TreeNode.left_child.balance_factor < 0:  # 1st check the
+                # balance factor of the left child. If the left child is
+                # right heavy then perform a left rotation ob the left child
+                # followed by the original right rotation
                 self.rotate_left(node.TreeNode.left_child)
                 self.rotate_right(node)
             else:
