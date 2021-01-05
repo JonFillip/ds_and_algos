@@ -21,6 +21,14 @@ def breath_first_search(graph, start):
         current_vertex.set_color('black')
 
 
+def traverse(y):
+    x = y
+    while (x.get_connection()):
+        print(x.get_id())
+        x = x.get_connections()
+    print(x.get_id())
+
+
 graph = Graph()
 graph.add_vertex("Man")
 graph.add_vertex("Dan")
@@ -29,4 +37,3 @@ graph.add_vertex("Ran")
 graph.add_vertex("Men")
 
 breath_first_search(graph, graph.vertices[0])
-

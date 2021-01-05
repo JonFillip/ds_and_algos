@@ -50,3 +50,26 @@ class BinaryHeap:
         self.heap_list.pop()
         self.percolate_down(1)
         return front_val
+
+    def build_min_heap(self, sample_list):
+        pos = len(sample_list) // 2
+        self.current_size = len(sample_list)
+        self.heap_list = [0] + sample_list[:]
+        while pos > 0:
+            self.percolate_down(1)
+            pos -= 1
+
+    def Print(self):
+        """Print a formatted string representation of the heap."""
+        for pos in range(1, (self.current_size // 2) + 1):
+            print(f"PARENT NODE: {self.heap_list[pos]} "
+                  f" LEFT CHILD: {self.heap_list[pos * 2]}"
+                  f" RIGHT CHILD: {self.heap_list[pos * 2 + 1]}")
+
+
+mini_heap = BinaryHeap()
+a_list = [3, 56, 2, 10, 2, 8, 11]
+for i in a_list:
+    mini_heap.insert(i)
+mini_heap.Print()
+print(f"Minimum child is : {mini_heap.del_min()}")
