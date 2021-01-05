@@ -72,8 +72,8 @@ class MaxBinaryHeap:
 
 
 max_heap = MaxBinaryHeap()
-a_list = [3, 56, 2, 10, 2, 8, 11]
-for i in a_list:
+s_list = [3, 56, 2, 10, 2, 8, 11]
+for i in s_list:
     max_heap.insert(i)
 max_heap.Print()
 print(f"Minimum child is : {max_heap.del_max()}")

@@ -225,3 +225,35 @@ class AvlTree(BinarySearchTree):
                 self.rotate_right(node)
             else:
                 self.rotate_right(node)
+
+    def delete(self, key):
+        if self.node is not None:
+            if self.node.key == key:
+                # Key found in leaf node, just erase it
+                if not self.node.left.node and not self.node.right.node:
+                    self.node = None
+                # Node has only one subtree (right), replace root with that one
+                elif not self.node.left.node:
+                    self.node = self.node.right.node
+                # Node has only one subtree (left), replace root with that one
+                elif not self.node.right.node:
+                    self.node = self.node.left.node
+                else:
+                    # Find  successor as smallest node in right subtree or
+                    #       predecessor as largest node in left subtree
+                    successor = self.node.right.node
+                    while successor and successor.left.node:
+                        successor = successor.left.node
+
+                    if successor:
+                        self.node.key = successor.key
+
+                        # Delete successor from the replaced node right subree
+                        self.node.right.delete(successor.key)
+
+            elif key < self.node.key:
+                self.node.left.delete(key)
+
+            elif key > self.node.key:
+                self.node.right.delete(key)
+
