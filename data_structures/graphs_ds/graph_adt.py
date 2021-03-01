@@ -1,3 +1,7 @@
+import sys
+import unittest
+
+
 class Vertex:
     """Representation of the vertices in a adjacent list graph"""
 
@@ -5,6 +9,11 @@ class Vertex:
         self.id = key  # Represents the vertex or main node
         self.path_to = {}  # Represents the values or weights connecting each
         # vertex
+        self.color = "white"  # Represents a vertex that is yet to be explored
+        self.distance = sys.maxsize
+        self.predecessor = None
+        self.discovered = 0
+        self.finish = 0
 
     def add_neighbour(self, new_vertex, weight=0):
         """Adds a new vertex and weight"""
@@ -25,13 +34,50 @@ class Vertex:
         """Returns the weight connected to a specified vertex"""
         return self.path_to[new_vertex]
 
-    def set_color(self):
-        """Returns a color from black, gray and white to indicate nodes
+    def set_color(self, color):
+        """Sets a color from black, gray and white to indicate nodes
         already traversed"""
+        self.color = color
+
+    def get_color(self):
+        """Returns the color of the current node or vertex"""
+        return self.color
+
+    def set_predecessor(self, pred):
+        """Sets predecessor of the search algorithm when traversing a graph"""
+        self.predecessor = pred
+
+    def get_predecessor(self):
+        """Returns the predecessor"""
+        return self.predecessor
+
+    def set_distance(self, dist):
+        """Sets the distance between two vertices"""
+        self.distance = dist
+
+    def get_distance(self):
+        """Returns the distance between two vertices"""
+        return self.distance
+
+    def set_discovery(self, disc):
+        """Tracks the number of steps the algorithm takes before encountering
+        vertex """
+        self.discovered = disc
+
+    def set_finish(self, finish_time):
+        """Tracks the time the number of steps the search algorithm took
+        before encountering the last vertex"""
+        self.finish = finish_time
+
+    def print(self):
+        return f"{self.id} - color: {self.color}, discovered: " \
+               f"{self.discovered}, finished: {self.finish}, distance: " \
+               f"{self.distance}, Predecessor: \n\t[{self.predecessor}]\n"
 
 
 class Graph:
     """Implementation of a adjacent list graph representation"""
+
     def __init__(self):
         self.vertices = {}
         self.num_vertices = 0
@@ -70,3 +116,21 @@ class Graph:
     def __iter__(self):
         """Iterate or traverse through the dictionary or graph value(weights)"""
         return iter(self.vertices.values())
+
+
+class GraphAdtTest(unittest.TestCase):
+    """Tests graph data structure and methods"""
+    def setUp(self):
+        self.test_Graph = Graph()
+
+    def build_test_graph(self):
+        graph_file = open("test.dat")
+        for line in graph_file:
+            first_vertex, tail_vertex = line.split(' | ')
+            first_vertex = int(first_vertex)
+            tail_vertex = int(tail_vertex)
+            self.test_Graph.add_edge(first_vertex, tail_vertex)
+        for i in self.test_Graph:
+            adj = i.getAdj()
+            for k in adj:
+                print(i, k)

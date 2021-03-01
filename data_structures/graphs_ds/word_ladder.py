@@ -1,21 +1,21 @@
 from data_structures.graphs_ds.graph_adt import Graph
 
-word_file = "data_structures/graphs_ds/word_file"
+word_file = "data_structures/graphs_ds/words_file"
 
 
-def WordLadder(word_file):
+def word_ladder(words_file):
     """The program gradually morphs a word gradually to a form a new word.
     Using the graph ADT, we are able to keep track of how and where each
     metamorphosis changes and its continued path. Using Breadth First Search
     algorithm"""
     word_dict = {}
     graph = Graph()
-    w_file = open(word_file, 'r')
+    w_file = open(words_file, 'r')
     # Create buckets of words that differ by one letter
     for line in w_file:
         word = line[:1]
         for i in range(len(word)):
-            bucket = f"{word[:i]}_{word[i+1:]}"
+            bucket = f"{word[:i]}_{word[i + 1:]}"
             if bucket in word_dict:
                 word_dict[bucket].append(word)
             else:

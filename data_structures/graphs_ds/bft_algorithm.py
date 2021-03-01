@@ -1,5 +1,6 @@
 from data_structures.graphs_ds.graph_adt import Graph, Vertex
 from data_structures.queues_ds.queue import Queue
+from data_structures.graphs_ds.word_ladder import word_ladder
 
 
 def breath_first_search(graph, start):
@@ -23,9 +24,9 @@ def breath_first_search(graph, start):
 
 def traverse(y):
     x = y
-    while (x.get_connection()):
+    while x.get_predecessor():
         print(x.get_id())
-        x = x.get_connections()
+        x = x.get_predecessor()
     print(x.get_id())
 
 
