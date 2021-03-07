@@ -112,7 +112,7 @@ class TestPriorityHeap(unittest.TestCase):
 
     def test_del_min(self):
         assert self.the_heap.del_min() == 'flour'
-        assert self.the_heap.del_min() == 'Bowl'
+        assert self.the_heap.del_min() == 'serve'
 
     def test_decrease_key(self):
         self.the_heap.decrease_key("Eggs", 1)

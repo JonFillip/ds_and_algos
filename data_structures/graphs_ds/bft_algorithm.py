@@ -30,11 +30,3 @@ def traverse(y):
     print(x.get_id())
 
 
-graph = Graph()
-graph.add_vertex("Man")
-graph.add_vertex("Dan")
-graph.add_vertex("Tan")
-graph.add_vertex("Ran")
-graph.add_vertex("Men")
-
-breath_first_search(graph, graph.vertices[0])
